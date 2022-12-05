@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { LanguageContext } from "../../components/context/language.context";
 import { getNote, archiveNote } from "../../utils/public-api";
+import { Loading } from "../../components/loading/loading.component";
+import "./detail-note.style.css";
 export const DetailNote = () => {
   const { langAsset } = useContext(LanguageContext);
   const navigate = useNavigate();
@@ -20,12 +22,12 @@ export const DetailNote = () => {
   }, []);
   if (noteDetail) {
     return (
-      <div>
+      <div className="detail-page-container">
         <h1>{noteDetail.title}</h1>
         <div>{noteDetail.body}</div>
         <button onClick={onArchiveHandler}>{langAsset.archive}</button>
       </div>
     );
   }
-  return <div>Loading ....</div>;
+  return <Loading />;
 };

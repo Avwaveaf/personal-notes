@@ -1,4 +1,28 @@
 .navbar-container {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
+.nav-button-container {
+  display: flex;
+  width: 20%;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-button {
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  background: inherit;
+  color: inherit;
+  padding: 15px;
+  box-shadow: 3px 3px 7px #252525, -3px -3px 7px #333333;
+  transition: 1s;
+}
+.nav-button:hover {
+  border-radius: 50px;
+  background: inherit;
+  cursor: pointer;
+  color: inherit;
+  box-shadow: inset 3px 3px 7px #252525, inset -3px -3px 7px #333333;
 }

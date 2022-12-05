@@ -21,11 +21,17 @@ export const Navigation = ({ logOut, name }) => {
 
       <Link to="/add-note">{langAsset.addNote}</Link>
       <Link to="/archived">{langAsset.archived}</Link>
-      <button onClick={languageHandler}>{langAsset.language}</button>
-      <button onClick={themeHandler}>{langAsset.theme}</button>
-      <button type="" onClick={logOut}>
-        {langAsset.logOut}
-      </button>
+      <div className="nav-button-container">
+        <button className="nav-button" onClick={languageHandler}>
+          {langAsset.language}
+        </button>
+        <button className="nav-button" onClick={themeHandler}>
+          {langAsset.theme}
+        </button>
+        <button className="nav-button" type="" onClick={logOut}>
+          {langAsset.logOut}
+        </button>
+      </div>
     </nav>
   );
 };

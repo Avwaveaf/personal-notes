@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { darkTheme, lightTheme, cardLight, cardDark } from "../../utils/theme";
 
 export const ThemeContext = createContext({
   currTheme: false,
@@ -9,12 +10,12 @@ export const ThemeContext = createContext({
 
 export const ThemeContextProvider = ({ children }) => {
   const [currTheme, setCurrTheme] = useState(false);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState({});
   useEffect(() => {
     if (currTheme) {
-      setTheme("light");
+      setTheme({ theme: lightTheme, card: cardLight });
     } else {
-      setTheme("dark");
+      setTheme({ theme: darkTheme, card: cardDark });
     }
   }, [currTheme]);
   const value = {

@@ -3,10 +3,11 @@
   box-sizing: border-box;
   border: 2px solid black;
   padding: 10px;
-  margin: 20px 30px;
+  margin: 20px 10%;
 }
 .input-container input {
   outline: none;
   border: none;
   width: 100%;
+  background-color: inherit;
 }

@@ -13,6 +13,7 @@ import { Archived } from "./routes/archived/archived.page";
 import { SeachBar } from "./components/search-bar/search-bar.component";
 import { LanguageContext } from "./components/context/language.context";
 import { ArchivedDetail } from "./routes/archived-detail-note/archived-detail-note.page";
+import { ThemeContext } from "./components/context/theme.context";
 const PageNotFound = () => {
   return <div>This page is not found</div>;
 };
@@ -22,6 +23,7 @@ function App() {
   const [authedUser, setAuthedUser] = useState(null);
   const [initializing, setInitializing] = useState(true);
   const [searchNoteString, setSarchNoteString] = useState("");
+  const { theme } = useContext(ThemeContext);
   const onLoginSuccessHandler = async ({ accessToken }) => {
     putAccessToken(accessToken);
     const { data } = await getUserLogged();
@@ -47,7 +49,7 @@ function App() {
   }
   if (authedUser === null) {
     return (
-      <div className="private-notes-app">
+      <div className={`private-notes-app `} style={theme}>
         <main>
           <Routes>
             <Route
@@ -61,7 +63,7 @@ function App() {
     );
   }
   return (
-    <div className="private-notes-app">
+    <div className={`private-notes-app `} style={theme.theme}>
       <header className="private-notes-header">
         <span className="app-title">{langAsset.title}</span>
         <Navigation logOut={onLogOutHandler} name={authedUser.name} />

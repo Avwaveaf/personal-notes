@@ -1,0 +1,13 @@
+.detail-page-container {
+  display: flex;
+  width: 70%;
+  margin: 50px auto;
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: 50px;
+  flex-direction: column;
+  justify-content: center;
+}
+.detail-page-container button {
+  width: 10%;
+}

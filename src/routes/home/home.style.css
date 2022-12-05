@@ -1,7 +1,8 @@
 .notes-container {
   display: flex;
-  width: 70%;
+  width: 90%;
   margin: auto;
+  padding: 30px;
 }
 .home-container {
   display: flex;

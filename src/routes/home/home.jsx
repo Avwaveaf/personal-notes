@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { useSearchParams } from "react-router-dom";
 import { LanguageContext } from "../../components/context/language.context";
 import { ThemeContext } from "../../components/context/theme.context";
+import { Loading } from "../../components/loading/loading.component";
 
 export const Home = ({ searchString }) => {
   const { langAsset } = useContext(LanguageContext);
@@ -50,7 +51,7 @@ export const Home = ({ searchString }) => {
   }, []);
   if (notes && !filteredNotes) {
     return (
-      <div className={`home-container ${theme}`}>
+      <div className={`home-container `} style={theme.card}>
         <h1>{langAsset.activeNotesTitle}</h1>
         <div className="notes-container">
           {notes.map((e) => {
@@ -65,7 +66,7 @@ export const Home = ({ searchString }) => {
   }
   if (filteredNotes) {
     return (
-      <div className={`home-container ${theme}`}>
+      <div className={`home-container `} style={theme.card}>
         <h1>{langAsset.activeNotesTitle}</h1>
         <div className="notes-container">
           {filteredNotes.map((e) => {
@@ -75,7 +76,7 @@ export const Home = ({ searchString }) => {
       </div>
     );
   }
-  return <div>Loading ...</div>;
+  return <Loading />;
 };
 Home.propTypes = {
   searchString: PropTypes.string,

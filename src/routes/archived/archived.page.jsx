@@ -4,6 +4,8 @@ import { Note } from "../../components/note/note.component";
 import PropTypes from "prop-types";
 import { useSearchParams } from "react-router-dom";
 import { LanguageContext } from "../../components/context/language.context";
+import { Loading } from "../../components/loading/loading.component";
+import "./archived.style.css";
 export const Archived = ({ searchString }) => {
   const { langAsset } = useContext(LanguageContext);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,7 +45,7 @@ export const Archived = ({ searchString }) => {
   if (archivedNotes) {
     if (!filteredArchiveNotes) {
       return (
-        <div>
+        <div className="archive-notes-container">
           {archivedNotes.map((e) => {
             return (
               <Note
@@ -61,7 +63,7 @@ export const Archived = ({ searchString }) => {
       return <div>{langAsset.searchNotFound}</div>;
     }
     return (
-      <div>
+      <div className="archive-notes-container">
         {filteredArchiveNotes.map((e) => {
           return (
             <Note
@@ -75,7 +77,7 @@ export const Archived = ({ searchString }) => {
       </div>
     );
   }
-  return <div>{langAsset.searchNotFound}</div>;
+  return <Loading />;
 };
 Archived.propTypes = {
   searchString: PropTypes.string,
