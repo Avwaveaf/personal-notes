@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { login } from "../utils/public-api";
 import { PropTypes } from "prop-types";
+import { Link } from "react-router-dom";
+
 export const Login = ({ loginSuccess }) => {
   const [userData, setUserData] = useState({
     email: "",
@@ -50,6 +52,9 @@ export const Login = ({ loginSuccess }) => {
         />
         <button type="submit">submit</button>
       </form>
+      <span>
+        Dont Have an Account? <Link to="register">register</Link>
+      </span>
     </div>
   );
 };

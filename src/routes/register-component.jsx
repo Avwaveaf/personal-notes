@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../utils/public-api";
 
+import { Link } from "react-router-dom";
+
 export const Register = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
@@ -62,6 +64,9 @@ export const Register = () => {
         />
         <button type="submit">submit</button>
       </form>
+      <span>
+        Already have an account? <Link to="/">login</Link>
+      </span>
     </div>
   );
 };

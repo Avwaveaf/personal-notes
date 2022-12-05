@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { LanguageContext } from "../context/language.context";
 
+import "./add-note-input.style.css";
+
 export const AddNoteInput = ({ addNote }) => {
   const { langAsset } = useContext(LanguageContext);
   const [noteData, setNoteData] = useState({
@@ -17,7 +19,7 @@ export const AddNoteInput = ({ addNote }) => {
     });
   };
   return (
-    <div>
+    <div className="add-note-input-container">
       <form
         onSubmit={(e) => {
           e.preventDefault();

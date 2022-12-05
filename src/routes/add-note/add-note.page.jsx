@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { addNote } from "../../utils/public-api";
 import { useContext } from "react";
 import { LanguageContext } from "../../components/context/language.context";
+import "./add-note.style.css";
 export const AddNote = () => {
   const { langAsset } = useContext(LanguageContext);
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export const AddNote = () => {
     navigate("/");
   };
   return (
-    <div>
+    <div className="add-note-container">
       {langAsset.addNoteTitle}
       <AddNoteInput addNote={addNoteHandler} />
     </div>

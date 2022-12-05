@@ -1,0 +1,9 @@
+.add-note-input-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+.add-note-input-container form {
+  display: flex;
+  flex-direction: column;
+}
