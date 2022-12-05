@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
+import { LanguageContext } from "../context/language.context";
 
 export const AddNoteInput = ({ addNote }) => {
+  const { langAsset } = useContext(LanguageContext);
   const [noteData, setNoteData] = useState({
     title: "",
     body: "",
@@ -26,6 +28,7 @@ export const AddNoteInput = ({ addNote }) => {
           type=""
           name="title"
           value={noteData.title}
+          placeholder={langAsset.addNoteInfoTitle}
           onChange={(e) => {
             e.preventDefault();
             inputChangeHandler(e.target.name, e.target.value);
@@ -35,12 +38,13 @@ export const AddNoteInput = ({ addNote }) => {
           type=""
           name="body"
           value={noteData.body}
+          placeholder={langAsset.addNoteInfoBody}
           onChange={(e) => {
             e.preventDefault();
             inputChangeHandler(e.target.name, e.target.value);
           }}
         />
-        <button type="submit">add</button>
+        <button type="submit">{langAsset.addButton}</button>
       </form>
     </div>
   );

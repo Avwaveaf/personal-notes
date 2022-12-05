@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getActiveNotes, deleteNote } from "../../utils/public-api";
+import "./home.style.css";
 import { Note } from "../../components/note/note.component";
 
 import PropTypes from "prop-types";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { LanguageContext } from "../../components/context/language.context";
+import { ThemeContext } from "../../components/context/theme.context";
 
 export const Home = ({ searchString }) => {
+  const { langAsset } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchNote = searchParams.get("search") || "";
   const [notes, setNotes] = useState(null);
@@ -45,24 +50,28 @@ export const Home = ({ searchString }) => {
   }, []);
   if (notes && !filteredNotes) {
     return (
-      <div>
-        <h1>Your Notes</h1>
-        {notes.map((e) => {
-          return <Note key={e.id} data={e} onDelete={onDeleteHandler} />;
-        })}
+      <div className={`home-container ${theme}`}>
+        <h1>{langAsset.activeNotesTitle}</h1>
+        <div className="notes-container">
+          {notes.map((e) => {
+            return <Note key={e.id} data={e} onDelete={onDeleteHandler} />;
+          })}
+        </div>
       </div>
     );
   }
   if (filteredNotes && !filteredNotes.length) {
-    return <div>no notes found</div>;
+    return <div>{langAsset.notFound}</div>;
   }
   if (filteredNotes) {
     return (
-      <div>
-        <h1>Your Notes</h1>
-        {filteredNotes.map((e) => {
-          return <Note key={e.id} data={e} onDelete={onDeleteHandler} />;
-        })}
+      <div className={`home-container ${theme}`}>
+        <h1>{langAsset.activeNotesTitle}</h1>
+        <div className="notes-container">
+          {filteredNotes.map((e) => {
+            return <Note key={e.id} data={e} onDelete={onDeleteHandler} />;
+          })}
+        </div>
       </div>
     );
   }

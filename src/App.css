@@ -2,17 +2,17 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-title {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.private-notes-header {
+  display: flex;
+  flex-direction: column;
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

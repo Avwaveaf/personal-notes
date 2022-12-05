@@ -1,13 +1,20 @@
-import { useEffect, useState } from "react";
-import { getArchivedNotes } from "../../utils/public-api";
+import { useContext, useEffect, useState } from "react";
+import { getArchivedNotes, unarchiveNote } from "../../utils/public-api";
 import { Note } from "../../components/note/note.component";
 import PropTypes from "prop-types";
 import { useSearchParams } from "react-router-dom";
+import { LanguageContext } from "../../components/context/language.context";
 export const Archived = ({ searchString }) => {
+  const { langAsset } = useContext(LanguageContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchNote = searchParams.get("search") || "";
   const [archivedNotes, setArchivedNotes] = useState(null);
   const [filteredArchiveNotes, setFilteredArchiveNotes] = useState(null);
+  const onUnArchiveHandler = async (id) => {
+    await unarchiveNote(id);
+    const { data } = await getArchivedNotes();
+    setArchivedNotes(data);
+  };
   useEffect(() => {
     if (archivedNotes) {
       const a = archivedNotes.filter((note) => {
@@ -16,6 +23,7 @@ export const Archived = ({ searchString }) => {
       setFilteredArchiveNotes(a);
     }
   }, [archivedNotes]);
+
   useEffect(() => {
     const fetchArchivedNotes = async () => {
       const { data } = await getArchivedNotes();
@@ -37,23 +45,37 @@ export const Archived = ({ searchString }) => {
       return (
         <div>
           {archivedNotes.map((e) => {
-            return <Note key={e.id} data={e} archived={true} />;
+            return (
+              <Note
+                key={e.id}
+                data={e}
+                archived={true}
+                onUnArchive={onUnArchiveHandler}
+              />
+            );
           })}
         </div>
       );
     }
     if (filteredArchiveNotes && !filteredArchiveNotes.length) {
-      return <div>no notes found</div>;
+      return <div>{langAsset.searchNotFound}</div>;
     }
     return (
       <div>
         {filteredArchiveNotes.map((e) => {
-          return <Note key={e.id} data={e} archived={true} />;
+          return (
+            <Note
+              key={e.id}
+              data={e}
+              archived={true}
+              onUnArchive={onUnArchiveHandler}
+            />
+          );
         })}
       </div>
     );
   }
-  return <div>archived note not found please add first</div>;
+  return <div>{langAsset.searchNotFound}</div>;
 };
 Archived.propTypes = {
   searchString: PropTypes.string,
