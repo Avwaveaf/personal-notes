@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { LanguageContext } from "../../components/context/language.context";
 import { getNote, unarchiveNote } from "../../utils/public-api";
 export const ArchivedDetail = () => {
-  console.log("im called");
   const { langAsset } = useContext(LanguageContext);
   const navigate = useNavigate();
   const { id } = useParams();
