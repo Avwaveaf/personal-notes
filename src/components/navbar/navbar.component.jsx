@@ -6,12 +6,15 @@ import { LanguageContext } from "../context/language.context";
 import { ThemeContext } from "../context/theme.context";
 export const Navigation = ({ logOut, name }) => {
   const { langAsset, language, setLanguage } = useContext(LanguageContext);
-  const { setCurrTheme, currTheme } = useContext(ThemeContext);
+  const { setTheme } = useContext(ThemeContext);
   const languageHandler = () => {
     setLanguage(!language);
   };
   const themeHandler = () => {
-    setCurrTheme(!currTheme);
+    setTheme((prev) => {
+      localStorage.setItem("darkMode", !prev);
+      return !prev;
+    });
   };
 
   return (

@@ -24,6 +24,7 @@ function App() {
   const [initializing, setInitializing] = useState(true);
   const [searchNoteString, setSarchNoteString] = useState("");
   const { theme } = useContext(ThemeContext);
+
   const onLoginSuccessHandler = async ({ accessToken }) => {
     putAccessToken(accessToken);
     const { data } = await getUserLogged();
@@ -41,6 +42,7 @@ function App() {
     };
     fetchUser();
   }, []);
+
   const onSearchQueryHandler = (val) => {
     setSarchNoteString(val);
   };
@@ -49,7 +51,7 @@ function App() {
   }
   if (authedUser === null) {
     return (
-      <div className={`private-notes-app `} style={theme}>
+      <div className={`private-notes-app `}>
         <main>
           <Routes>
             <Route
@@ -63,7 +65,7 @@ function App() {
     );
   }
   return (
-    <div className={`private-notes-app `} style={theme.theme}>
+    <div className={`private-notes-app ${theme}`}>
       <header className="private-notes-header">
         <span className="app-title">{langAsset.title}</span>
         <Navigation logOut={onLogOutHandler} name={authedUser.name} />

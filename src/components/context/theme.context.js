@@ -1,27 +1,18 @@
-import { createContext, useEffect, useState } from "react";
-import { darkTheme, lightTheme, cardLight, cardDark } from "../../utils/theme";
+import { createContext, useState } from "react";
 
 export const ThemeContext = createContext({
-  currTheme: false,
-  setCurrTheme: () => {},
-  theme: "",
+  theme: null,
   setTheme: () => {},
 });
 
 export const ThemeContextProvider = ({ children }) => {
-  const [currTheme, setCurrTheme] = useState(false);
-  const [theme, setTheme] = useState({});
-  useEffect(() => {
-    if (currTheme) {
-      setTheme({ theme: lightTheme, card: cardLight });
-    } else {
-      setTheme({ theme: darkTheme, card: cardDark });
-    }
-  }, [currTheme]);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("darkMode") || false
+  );
+
   const value = {
-    currTheme,
-    setCurrTheme,
     theme,
+    setTheme,
   };
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

@@ -6,12 +6,11 @@ import { Note } from "../../components/note/note.component";
 import PropTypes from "prop-types";
 import { useSearchParams } from "react-router-dom";
 import { LanguageContext } from "../../components/context/language.context";
-import { ThemeContext } from "../../components/context/theme.context";
 import { Loading } from "../../components/loading/loading.component";
 
 export const Home = ({ searchString }) => {
   const { langAsset } = useContext(LanguageContext);
-  const { theme } = useContext(ThemeContext);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const searchNote = searchParams.get("search") || "";
   const [notes, setNotes] = useState(null);
@@ -51,7 +50,7 @@ export const Home = ({ searchString }) => {
   }, []);
   if (notes && !filteredNotes) {
     return (
-      <div className={`home-container `} style={theme.card}>
+      <div className={`home-container `}>
         <h1>{langAsset.activeNotesTitle}</h1>
         <div className="notes-container">
           {notes.map((e) => {
@@ -66,7 +65,7 @@ export const Home = ({ searchString }) => {
   }
   if (filteredNotes) {
     return (
-      <div className={`home-container `} style={theme.card}>
+      <div className={`home-container `}>
         <h1>{langAsset.activeNotesTitle}</h1>
         <div className="notes-container">
           {filteredNotes.map((e) => {
